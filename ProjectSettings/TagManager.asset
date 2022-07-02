@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bound
   - Enemy
+  - Guard
+  - Shoter
   layers:
   - Default
   - TransparentFX
