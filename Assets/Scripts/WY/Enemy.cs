@@ -87,6 +87,8 @@ public class Enemy : MonoBehaviour
             pool.Push(this);
             gameObject.SetActive(false);
             BM.kill++;
+
+            SoundManager.instance.PlaySFX(isWeak ? SFXList.Dead_Weak : SFXList.Dead_Strong);
         }
     }
 

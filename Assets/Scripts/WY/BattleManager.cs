@@ -82,6 +82,7 @@ public class BattleManager : MonoBehaviour
 
     void Start() 
     {
+        SoundManager.instance.PlayBGM(BGMList.Ingame);
         StatLoad();
         SetBound();
 
@@ -131,6 +132,7 @@ public class BattleManager : MonoBehaviour
     ///<summary> 사격 </summary>
     void Shot()
     {
+        SoundManager.instance.PlaySFX(SFXList.Gun_Shot);
         Bullet b = bulletPool.GetToken(bulletPrefab, bulletParent);
         b.transform.position = shotPoint.position;
 
@@ -191,12 +193,14 @@ public class BattleManager : MonoBehaviour
     ///<summary> 적 접촉 시 호출, 쉴드 데미지 </summary>
     public void GetDamage_Guard(int dmg)
     {
+        SoundManager.instance.PlaySFX(SFXList.Shield_Reflect);
         shield -= dmg;
         guardRect.gameObject.SetActive(shield > 0);
     }
     ///<summary> 적 접촉 시 호출, 슈터 데미지 </summary>
     public void GetDamage_Shoter(int dmg)
     {
+        SoundManager.instance.PlaySFX(SFXList.Hult_Shoter);
         health -= dmg;
         if(health <= 0)
             EndGame();
@@ -255,6 +259,8 @@ public class BattleManager : MonoBehaviour
     ///<summary> 슈터 체력 0 이하일 때 호출, 게임 종료 </summary>
     void EndGame()
     {
+        SoundManager.instance.PlaySFX(SFXList.GameOver);
+
         isEnd = true;
         Debug.Log("game End");
         Debug.Log($"time : {time}, kill : {kill}");
