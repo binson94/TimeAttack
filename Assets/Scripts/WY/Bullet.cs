@@ -11,8 +11,9 @@ public class Bullet : MonoBehaviour
     int dmg = 3;
 
     ///<summary> 풀 연결, 나아갈 방향 설정 </summary>
-    public void Initialize(Pool<Bullet> p, Vector2 direction)
+    public void Initialize(int dmg, Pool<Bullet> p, Vector2 direction)
     {
+        this.dmg = dmg;
         pool = p;
         transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, Vector3.forward);
     }
@@ -35,7 +36,9 @@ public class Bullet : MonoBehaviour
     {
         if(collider.tag == "Enemy")
         {
-            collider.GetComponent<Enemy>().GetDamage(dmg);
+            Enemy ene = collider.GetComponent<Enemy>();
+            if(!ene.isKnockback) ene.GetDamage(dmg);
+
             pool.Push(this);
             gameObject.SetActive(false);
         }

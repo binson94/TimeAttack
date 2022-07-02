@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public int[] lvls;
     StatData statData;
+    ///<summary> 레벨 정보 및 스텟 정보 불러오기 </summary>
     void LoadData()
     {
         lvls = new int[6];
@@ -34,9 +35,21 @@ public class GameManager : MonoBehaviour
 
         statData = new StatData();
     }
-
+    ///<summary> 레벨 정보 저장하기 </summary>
+    public void SaveData()
+    {
+        for(int i = 0;i < 6;i++)
+            PlayerPrefs.SetInt($"Stat{i}", lvls[i]);
+    }
+    
+    ///<summary> 현재 레벨의 스텟 수치 반환 </summary>
+    ///<param name = "statIdx"> 0 atk, 1 fireRate, 2 health, 3 reflect, 4 speed, 5 shield </param>
+    public int GetCurrStat(int statIdx) => statData.stats[statIdx, lvls[statIdx] - 1];
+    
+    ///<summary> 스텟 수치 반환 </summary>
+    ///<param name = "statIdx"> 0 atk, 1 fireRate, 2 health, 3 reflect, 4 speed, 5 shield </param>
     public int GetStat(int statIdx, int statLvl) => statData.stats[statIdx, Mathf.Min(4, statLvl - 1)];
-    public int GetPrice(int statLvl) => statData.requireGems[Mathf.Min(4, statLvl)];
+    public int GetPrice(int statLvl) => statData.requireGems[Mathf.Min(4, statLvl - 1)];
 }
 
 public class StatData
