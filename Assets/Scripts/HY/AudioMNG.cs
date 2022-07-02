@@ -6,21 +6,29 @@ using UnityEngine.Audio;
 
 public class AudioMNG : MonoBehaviour
 {
-    [SerializeField] AudioMixer mixer;
-
-    [SerializeField] private AudioSource BGMPlayer;
-    [SerializeField] private AudioSource SFXPlayer;
 
     [SerializeField] Slider bgmSlider;
     [SerializeField] Slider sfxSlider;
 
-    //
-    public AudioClip[] sfxAudioClips;
+    private void Start()
+    {
+        bgmSlider.value = PlayerPrefs.GetFloat("BGM", 1);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFX", 1);
 
+        SetBGM();
+        SetSFX();
+
+        //SoundManager.instance.PlayBGM(BGMList.MainMenu);
+        //SoundManager.instance.PlaySFX(SFXList.Button);
+
+    }
 
     public void SetBGM()
     {
-        mixer.SetFloat("BGM",Mathf.Log10(bgmSlider.value) * 20 );
+        SoundManager.instance.SetBGM(bgmSlider.value);
     }
-
+    public void SetSFX()
+    {
+        SoundManager.instance.SetSFX(sfxSlider.value);
+    }
 }
