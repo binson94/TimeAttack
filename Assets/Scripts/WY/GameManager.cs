@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     }
 
     public int[] lvls;
+    public int holdingMoney;
     StatData statData;
     ///<summary> 레벨 정보 및 스텟 정보 불러오기 </summary>
     void LoadData()
@@ -32,16 +33,26 @@ public class GameManager : MonoBehaviour
         lvls = new int[6];
         for(int i = 0;i < 6;i++)
             lvls[i] = PlayerPrefs.GetInt($"Stat{i}", 1);
+        holdingMoney = PlayerPrefs.GetInt("Money", 0);
 
         statData = new StatData();
     }
-    ///<summary> 레벨 정보 저장하기 </summary>
-    public void SaveData()
+    ///<summary> 레벨 및 돈 정보 저장하기 </summary>
+    void SaveData()
     {
         for(int i = 0;i < 6;i++)
             PlayerPrefs.SetInt($"Stat{i}", lvls[i]);
+        PlayerPrefs.SetInt("Money", holdingMoney);
     }
     
+    ///<summary> 스텟 업그레이드 진행 </summary>
+    ///<param name="statIdx"> 0 atk, 1 fireRate, 2 health, 3 reflect, 4 speed, 5 shield </param>
+    public void Upgrade(int statIdx)
+    {
+        holdingMoney -= GetPrice(GameManager.instance.lvls[statIdx]);
+        lvls[statIdx]++;
+        SaveData();
+    }
     ///<summary> 현재 레벨의 스텟 수치 반환 </summary>
     ///<param name = "statIdx"> 0 atk, 1 fireRate, 2 health, 3 reflect, 4 speed, 5 shield </param>
     public int GetCurrStat(int statIdx) => statData.stats[statIdx, lvls[statIdx] - 1];

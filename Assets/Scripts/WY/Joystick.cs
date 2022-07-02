@@ -20,6 +20,8 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     ///<summary> 조이스틱 크기 설정 불러오기 </summary>
     private void Start() 
     {
+        size = PlayerPrefs.GetFloat("Joystick", 0.5f);
+        
         //레버 사이즈 조절
         lever.sizeDelta = new Vector2(75 * (1 + size), 75 * (1 + size));
         //레버 배경 사이즈 조절

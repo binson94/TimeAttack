@@ -7,7 +7,11 @@ public class StartSceneBtns : MonoBehaviour
 {
     public GameObject option;
     public GameObject upgrade;
-    public GameObject returnbtn;
+
+    private void Start() 
+    {
+        SoundManager.instance.PlayBGM(BGMList.MainMenu);
+    }
 
 
     public void StartOnclick()
@@ -18,34 +22,22 @@ public class StartSceneBtns : MonoBehaviour
     
     public void UpgradeOnclick()
     {
-        // ¾÷±×·¹ÀÌµå Ã¢ ¶ç¿ì±â
+        // ì—…ê·¸ë ˆì´ë“œ ì°½ ë„ìš°ê¸°
         SoundManager.instance.PlaySFX(SFXList.Button);
         upgrade.SetActive(true);
-        isReturn(); // ¸®ÅÏ ¹öÆ° ÄÑÁÖ±â
     }
 
     public void OptionOnClick()
     {
-        // ¼³Á¤ Ã¢ ¶ç¿ì±â
+        // ì„¤ì • ì°½ ë„ìš°ê¸°
         SoundManager.instance.PlaySFX(SFXList.Button);
         option.SetActive(true);
-        isReturn();
     }
 
     public void ExitOnclick()
     {
         SoundManager.instance.PlaySFX(SFXList.Button);
-        // °ÔÀÓ Á¾·á
-    }
-
-    public void isReturn()
-    {
-        if (option.activeSelf == true || upgrade.activeSelf == true)
-        {
-            returnbtn.SetActive(true);
-        }
-        else
-            returnbtn.SetActive(false);
+        // ê²Œì„ ì¢…ë£Œ
     }
 
     public void ReturnBtnOnClick()
@@ -53,7 +45,5 @@ public class StartSceneBtns : MonoBehaviour
         SoundManager.instance.PlaySFX(SFXList.Button);
         option.SetActive(false);
         upgrade.SetActive(false);
-        returnbtn.SetActive(false);
-
     }
 }

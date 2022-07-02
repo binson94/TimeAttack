@@ -49,13 +49,13 @@ public class Enemy : MonoBehaviour
         {
             health = Random.Range(stageLvl, 2 * stageLvl + 1);
             atk = Random.Range(stageLvl, 3 * stageLvl + 1);
-            speed = Random.Range(0.05f * stageLvl, 0.08f * stageLvl) + 0.15f;
+            speed = Random.Range(0.08f * stageLvl, 0.12f * stageLvl) + 0.18f;
         }
         else
         {
-            health = (int)Random.Range(2 * stageLvl, Mathf.Pow(stageLvl, 2.5f) + 2 * stageLvl);
+            health = (int)Random.Range(Mathf.Pow(stageLvl, 1.5f) + stageLvl, Mathf.Pow(stageLvl, 2f) + stageLvl);
             atk = Random.Range(2 * stageLvl, 5 * stageLvl + 1);
-            speed = Random.Range(0.03f * stageLvl, 0.05f * stageLvl) + 0.1f;
+            speed = Random.Range(0.06f * stageLvl, 0.09f * stageLvl) + 0.14f;
          }
     }
 
