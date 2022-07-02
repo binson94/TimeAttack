@@ -6,8 +6,15 @@ using UnityEngine.SceneManagement;
 public class StartSceneBtns : MonoBehaviour
 {
     public GameObject option;
-    public GameObject exit;
 
+    void Start()
+    {
+        
+    }
+    void Update()
+    {
+            
+    }
 
     public void StartOnclick()
     {
@@ -21,17 +28,11 @@ public class StartSceneBtns : MonoBehaviour
 
     public void OptionOnClick()
     {
-        option.SetActive(true);
-        exit.SetActive(false);
+        // 설정 창 띄우기
     }
 
     public void ExitOnclick()
     {
         // 게임 종료
-    }
-    public void ReturntoMenu()
-    {
-        option.SetActive(false);
-        exit.SetActive(true);
     }
 }
