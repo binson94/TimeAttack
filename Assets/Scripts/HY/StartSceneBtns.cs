@@ -6,15 +6,9 @@ using UnityEngine.SceneManagement;
 public class StartSceneBtns : MonoBehaviour
 {
     public GameObject option;
+    public GameObject upgrade;
+    public GameObject returnbtn;
 
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-            
-    }
 
     public void StartOnclick()
     {
@@ -23,16 +17,38 @@ public class StartSceneBtns : MonoBehaviour
     
     public void UpgradeOnclick()
     {
-        SceneManager.LoadScene(2);
+        // 업그레이드 창 띄우기
+        upgrade.SetActive(true);
+        isReturn(); // 리턴 버튼 켜주기
     }
 
     public void OptionOnClick()
     {
         // 설정 창 띄우기
+        option.SetActive(true);
+        isReturn();
     }
 
     public void ExitOnclick()
     {
         // 게임 종료
+    }
+
+    public void isReturn()
+    {
+        if (option.activeSelf == true || upgrade.activeSelf == true)
+        {
+            returnbtn.SetActive(true);
+        }
+        else
+            returnbtn.SetActive(false);
+    }
+
+    public void ReturnBtnOnClick()
+    {
+        option.SetActive(false);
+        upgrade.SetActive(false);
+        returnbtn.SetActive(false);
+
     }
 }
