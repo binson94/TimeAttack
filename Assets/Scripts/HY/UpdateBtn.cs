@@ -59,7 +59,7 @@ public class UpdateBtn : MonoBehaviour
             }
         }
     }
-
+    public void HoldingMoneyUpdate() => holdingMoneyTxt.text = GameManager.instance.holdingMoney.ToString();
     ///<summary> 업그레이드 진행 버튼 </summary>
     ///<param name="idx"> 0 atk, 1 fireRate, 2 health, 3 reflect, 4 speed, 5 shield </param>
     public void UpgradeBtn(int idx)

@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Guard
   - Shoter
+  - NowData
+  - NextData
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -44,4 +47,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1516533051
+    locked: 0
+  - name: Back Arm
+    uniqueID: 952804145
+    locked: 0
+  - name: Body
+    uniqueID: 610473933
+    locked: 0
+  - name: Front Arm
+    uniqueID: 2616568905
+    locked: 0
+  - name: Unit
+    uniqueID: 4206634095
     locked: 0

@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Money", holdingMoney);
     }
     
+
+    public void EarnMoney(int amount) => PlayerPrefs.SetInt("Money", holdingMoney += amount);
     ///<summary> 스텟 업그레이드 진행 </summary>
     ///<param name="statIdx"> 0 atk, 1 fireRate, 2 health, 3 reflect, 4 speed, 5 shield </param>
     public void Upgrade(int statIdx)

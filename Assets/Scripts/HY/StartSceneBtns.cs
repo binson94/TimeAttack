@@ -13,6 +13,13 @@ public class StartSceneBtns : MonoBehaviour
         SoundManager.instance.PlayBGM(BGMList.MainMenu);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            if(upgrade.activeInHierarchy || option.activeInHierarchy) ReturnBtnOnClick();
+            else ExitOnclick();
+    }
+
 
     public void StartOnclick()
     {
@@ -37,7 +44,7 @@ public class StartSceneBtns : MonoBehaviour
     public void ExitOnclick()
     {
         SoundManager.instance.PlaySFX(SFXList.Button);
-        // 게임 종료
+        Application.Quit();
     }
 
     public void ReturnBtnOnClick()

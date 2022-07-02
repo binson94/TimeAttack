@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 ///<summary> 전투 씬 제어 클래스 </summary>
 public class BattleManager : MonoBehaviour
@@ -34,15 +35,19 @@ public class BattleManager : MonoBehaviour
     [Header("Player Stat")]
     public int atk;
     ///<summary> 플레이어 연사 속도 </summary>
-    public int fireRate = 4;
+    int fireRate = 4;
     ///<summary> 플레이어 체력 </summary>
-    public int health;
+    int health;
     ///<summary> 반사 데미지 </summary>
     public int reflect;
     ///<summary> 쉴더 이동 속도 </summary>
-    public int speed;
+    int speed;
     ///<summary> 쉴더 방패 내구도 </summary>
-    public int shield;
+    int shield;
+
+    int maxHP, maxShield;
+    [SerializeField] Slider hpSlider;
+    [SerializeField] Slider shieldSlider;
 
     ///<summary> 총알 프리팹 </summary>
     [Header("Bullet")]
@@ -76,12 +81,23 @@ public class BattleManager : MonoBehaviour
 
 
     [Header("Score")]
+    
+    [SerializeField] Text highscoreTxt;
+    [SerializeField] Text scoreTxt;
     public int kill = 0;
-    int time = 0;
+    int time = 0; 
+    int highScore;
+
+    [Header("GameOver")]
+    [SerializeField] GameObject gameoverPanel;
+    [SerializeField] Text resultKillTxt;
+    [SerializeField] Text resultTimeTxt;
     public bool isEnd = false;
 
     void Start() 
     {
+        highscoreTxt.text = (highScore = PlayerPrefs.GetInt("High", 0)).ToString();
+
         SoundManager.instance.PlayBGM(BGMList.Ingame);
         StatLoad();
         SetBound();
@@ -96,10 +112,10 @@ public class BattleManager : MonoBehaviour
     {
         atk = GameManager.instance.GetCurrStat(0);
         fireRate = GameManager.instance.GetCurrStat(1);
-        health = GameManager.instance.GetCurrStat(2);
+        maxHP = health = GameManager.instance.GetCurrStat(2);
         reflect = GameManager.instance.GetCurrStat(3);
         speed = GameManager.instance.GetCurrStat(4);
-        shield = GameManager.instance.GetCurrStat(5);
+        maxShield = shield = GameManager.instance.GetCurrStat(5);
     }
     ///<summary> 총알 외부 경계 설정 </summary>
     void SetBound()
@@ -195,6 +211,10 @@ public class BattleManager : MonoBehaviour
     {
         SoundManager.instance.PlaySFX(SFXList.Shield_Reflect);
         shield -= dmg;
+
+        if(shield < 0) shield = 0;
+        shieldSlider.value = shield / (float)maxShield;
+
         guardRect.gameObject.SetActive(shield > 0);
     }
     ///<summary> 적 접촉 시 호출, 슈터 데미지 </summary>
@@ -202,6 +222,10 @@ public class BattleManager : MonoBehaviour
     {
         SoundManager.instance.PlaySFX(SFXList.Hult_Shoter);
         health -= dmg;
+
+        if(health < 0) health = 0;
+        hpSlider.value = health / (float)maxHP;
+
         if(health <= 0)
             EndGame();
     }
@@ -216,6 +240,10 @@ public class BattleManager : MonoBehaviour
         {
             time++;
             if (time % 5 == 0) stageLvl++;
+
+            scoreTxt.text = time.ToString();
+            if(time > highScore)
+                highscoreTxt.text = time.ToString();
 
             int amount = (int)Random.Range(stageLvl * 5f / 6 + 0.5f, stageLvl * 3f / 2 + 0.5f); 
             for(int i = 0; i < amount;i++)
@@ -260,10 +288,15 @@ public class BattleManager : MonoBehaviour
     void EndGame()
     {
         SoundManager.instance.PlaySFX(SFXList.GameOver);
+        GameManager.instance.EarnMoney(kill);
+
+        if(time > highScore)
+            PlayerPrefs.SetInt("High", time);
 
         isEnd = true;
-        Debug.Log("game End");
-        Debug.Log($"time : {time}, kill : {kill}");
+        resultKillTxt.text = kill.ToString();
+        resultTimeTxt.text = time.ToString();
+        gameoverPanel.SetActive(true);
     }
 
     ///<summary> 옵션 버튼 </summary>
