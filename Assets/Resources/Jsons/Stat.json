@@ -1,47 +1,47 @@
 [
-    {
-      "gem": 25,
-      "attack": 2,
-      "fireRate": 4,
-      "health": 10,
-      "reflect": 3,
-      "speed": 70,
-      "shield": 20
-    },
-    {
-      "gem": 75,
-      "attack": 4,
-      "fireRate": 6,
-      "health": 20,
-      "reflect": 6,
-      "speed": 110,
-      "shield": 40
-    },
-    {
-      "gem": 150,
-      "attack": 8,
-      "fireRate": 9,
-      "health": 40,
-      "reflect": 12,
-      "speed": 150,
-      "shield": 80
-    },
-    {
-      "gem": 250,
-      "attack": 16,
-      "fireRate": 13,
-      "health": 80,
-      "reflect": 24,
-      "speed": 190,
-      "shield": 160
-    },
-    {
-      "gem": 0,
-      "attack": 32,
-      "fireRate": 18,
-      "health": 160,
-      "reflect": 48,
-      "speed": 230,
-      "shield": 320
-    }
-   ]
+  {
+    "gem": 25,
+    "attack": 3,
+    "fireRate": 6,
+    "health": 10,
+    "reflect": 5,
+    "speed": 70,
+    "shield": 30
+  },
+  {
+    "gem": 75,
+    "attack": 6,
+    "fireRate": 10,
+    "health": 20,
+    "reflect": 10,
+    "speed": 110,
+    "shield": 90
+  },
+  {
+    "gem": 150,
+    "attack": 12,
+    "fireRate": 16,
+    "health": 40,
+    "reflect": 20,
+    "speed": 150,
+    "shield": 210
+  },
+  {
+    "gem": 250,
+    "attack": 24,
+    "fireRate": 26,
+    "health": 80,
+    "reflect": 40,
+    "speed": 190,
+    "shield": 400
+  },
+  {
+    "gem": 0,
+    "attack": 48,
+    "fireRate": 36,
+    "health": 160,
+    "reflect": 80,
+    "speed": 230,
+    "shield": 650
+  }
+ ]
