@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     ///<summary> 이동 속도 </summary>
     float speed;
 
-    float knockbackRate = 30f;
+    float knockbackRate = 20f;
     public bool isKnockback = false;
 
 

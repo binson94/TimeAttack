@@ -1,4 +1,0 @@
-repository "TimeAttack@red_team@cloud"
-  path "/"
-    br "/main"
-    co "/main"
